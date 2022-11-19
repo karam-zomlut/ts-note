@@ -2,16 +2,15 @@ import styled from '@emotion/styled';
 import { Grid } from '@mui/material';
 import { FC } from 'react';
 import { useAppSelector } from '../app/hooks';
+import { RootState } from '../app/store';
 import { ITodo, ITodoList } from '../Interfaces';
 import AddBox from './AddBox';
 import SingleNote from './SingleNote';
 
-const ContainerDiv = styled.div`
-  padding: 3rem 2rem;
-`;
-
 const Container: FC = () => {
-  const todoList: ITodoList = useAppSelector((state) => state.todo.todoList);
+  const todoList: ITodoList = useAppSelector(
+    (state: RootState) => state.todo.todoList
+  );
 
   return (
     <ContainerDiv>
@@ -31,5 +30,9 @@ const Container: FC = () => {
     </ContainerDiv>
   );
 };
+
+const ContainerDiv = styled.div`
+  padding: 3rem 2rem;
+`;
 
 export default Container;

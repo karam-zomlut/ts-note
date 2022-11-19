@@ -10,16 +10,17 @@ type IProps = {
     id: number;
     title: string;
     status: boolean;
+    description: string;
   };
 };
 
-const SingleNote = ({ todo: { id, title, status } }: IProps) => {
+const SingleNote = ({ todo: { id, title, status, description } }: IProps) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={2}>
-      <NoteContainer>
+      <NoteContainer className={status === true ? 'done' : ''}>
         <div className='details'>
           <h2 className='title'>{title}</h2>
-          <p className='description'>{title + title + title + title+ title + title+ title + title+ title + title+ title + title+ title + title+ title + title+ title + title+ title + title}</p>
+          <p className='description'>{description}</p>
         </div>
         <div className='bottom-content'>
           <span className='date'>{convertToDate(id)}</span>
@@ -45,6 +46,14 @@ const NoteContainer = styled.div`
   background-color: #fff;
   border-radius: 0.4rem;
   padding: 1rem 1.2rem 1.2rem;
+
+  &.done {
+    opacity: 0.5;
+
+    .details {
+      text-decoration: line-through;
+    }
+  }
 
   .details {
     max-height: 165px;

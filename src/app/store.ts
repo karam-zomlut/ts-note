@@ -1,9 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { todoReducer } from '../Slices';
+import { modalReducer, todoReducer } from '../Slices';
 
 export const store = configureStore({
   reducer: {
     todo: todoReducer,
+    modal: modalReducer,
   },
 });
 

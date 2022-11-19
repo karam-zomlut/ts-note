@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITodo, TodoState } from '../Interfaces';
-// import type { ITodoList } from '../Interfaces';
+import type { ITodoList } from '../Interfaces';
 
 // ITodoList not work in below function Error
-const getInitialValue: any = () => {
+const getInitialValue = (): ITodoList => {
   const localTodoList: string | null = window.localStorage.getItem('todoList');
   if (localTodoList) {
     return JSON.parse(localTodoList);

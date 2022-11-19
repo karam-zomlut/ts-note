@@ -37,3 +37,7 @@ i {
 body {
   background-color: #88abff;
 }
+
+.modal-title{
+  font-weight: bold;
+}

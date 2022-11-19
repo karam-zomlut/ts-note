@@ -1,6 +1,25 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import AddIcon from '@mui/icons-material/Add';
+import { useAppDispatch } from '../app/hooks';
+import { openModal } from '../Slices';
+
+const AddBox = () => {
+  const dispatch = useAppDispatch();
+  const handleOpenModal = (): void => {
+    dispatch(openModal({ title: 'Add a new note' }));
+  };
+  return (
+    <MyBox onClick={handleOpenModal}>
+      <div className='icon'>
+        <i>
+          <AddIcon />
+        </i>
+      </div>
+      <h2 className='box-title'>Add New Note</h2>
+    </MyBox>
+  );
+};
 
 const MyBox = styled.div`
   height: 250px;
@@ -37,18 +56,5 @@ const MyBox = styled.div`
     font-size: 1rem;
   }
 `;
-
-const AddBox = () => {
-  return (
-    <MyBox>
-      <div className='icon'>
-        <i>
-          <AddIcon />
-        </i>
-      </div>
-      <h2 className='box-title'>Add New Note</h2>
-    </MyBox>
-  );
-};
 
 export default AddBox;
