@@ -5,7 +5,30 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+button,
+.btn,
+input[type='button'],
+input[type='submit'] {
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  outline: none;
+}
 
+input,
+button,
+select,
+textarea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  outline: none;
+}
 i {
   pointer-events: none;
 }
