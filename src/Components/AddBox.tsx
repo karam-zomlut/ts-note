@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import AddIcon from '@mui/icons-material/Add';
 
 const MyBox = styled.div`
-  height: 230px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import SettingsMenu from './SettingsMenu';
 import styled from '@emotion/styled';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { convertToDate } from '../Utils';
 
 type IProps = {
   todo: {
@@ -18,10 +19,10 @@ const SingleNote = ({ todo: { id, title, status } }: IProps) => {
       <NoteContainer>
         <div className='details'>
           <h2 className='title'>{title}</h2>
-          <p className='description'>{title + title}</p>
+          <p className='description'>{title + title + title + title+ title + title+ title + title+ title + title+ title + title+ title + title+ title + title+ title + title+ title + title}</p>
         </div>
         <div className='bottom-content'>
-          <span className='date'>{id}</span>
+          <span className='date'>{convertToDate(id)}</span>
           <div className='actions'>
             <button className='btn more'>
               <i>
@@ -40,7 +41,7 @@ const NoteContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 230px;
+  height: 250px;
   background-color: #fff;
   border-radius: 0.4rem;
   padding: 1rem 1.2rem 1.2rem;

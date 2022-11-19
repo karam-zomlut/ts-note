@@ -46,6 +46,15 @@ const SettingsMenu = ({ id }: SettingsProps) => {
   return (
     <SettingsList className='setting-menu'>
       <li>
+        <button
+          className='btn del-btn'
+          onClick={() => dispatch(switchStatus(id))}
+        >
+          <i className='ri-delete-bin-line'></i>
+          Mark as Done
+        </button>
+      </li>
+      <li>
         <button className='btn edit-btn' onClick={() => null}>
           <i className='ri-pencil-line'></i>
           Edit
@@ -58,15 +67,6 @@ const SettingsMenu = ({ id }: SettingsProps) => {
         >
           <i className='ri-delete-bin-line'></i>
           Delete
-        </button>
-      </li>
-      <li>
-        <button
-          className='btn del-btn'
-          onClick={() => dispatch(switchStatus(id))}
-        >
-          <i className='ri-delete-bin-line'></i>
-          Mark as Done
         </button>
       </li>
     </SettingsList>

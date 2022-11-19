@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { ITodo } from './Interfaces';
-import { addTodo, deleteTodo, switchStatus } from './Slices';
+import { addTodo } from './Slices';
 import type { ITodoList } from './Interfaces';
 import { Container } from './Components';
 

@@ -31,6 +31,7 @@ textarea {
 }
 i {
   pointer-events: none;
+  line-height: 1;
 }
 
 body {
