@@ -2,9 +2,41 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useAppDispatch } from '../app/hooks';
 import { deleteTodo, switchStatus } from '../Slices';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DoneOutlinedIcon from '@mui/icons-material/DoneOutlined';
 
 type SettingsProps = {
   id: number;
+};
+
+const SettingsMenu = ({ id }: SettingsProps) => {
+  const dispatch = useAppDispatch();
+  return (
+    <SettingsList className='setting-menu'>
+      <li>
+        <button
+          className='btn del-btn'
+          onClick={() => dispatch(switchStatus(id))}
+        >
+          <i>
+            <DoneOutlinedIcon />
+          </i>
+          Mark as Done
+        </button>
+      </li>
+      <li>
+        <button
+          className='btn del-btn'
+          onClick={() => dispatch(deleteTodo(id))}
+        >
+          <i>
+            <DeleteOutlinedIcon />
+          </i>
+          Delete
+        </button>
+      </li>
+    </SettingsList>
+  );
 };
 
 const SettingsList = styled.ul`
@@ -16,7 +48,7 @@ const SettingsList = styled.ul`
   bottom: 0;
   right: -5px;
   padding: 0.4rem 0;
-  min-width: 150px;
+  min-width: 160px;
   transform: scale(0);
   transform-origin: bottom right;
   transition: all 0.3s ease-in-out;
@@ -40,37 +72,5 @@ const SettingsList = styled.ul`
     }
   }
 `;
-
-const SettingsMenu = ({ id }: SettingsProps) => {
-  const dispatch = useAppDispatch();
-  return (
-    <SettingsList className='setting-menu'>
-      <li>
-        <button className='btn edit-btn' onClick={() => null}>
-          <i className='ri-pencil-line'></i>
-          Edit
-        </button>
-      </li>
-      <li>
-        <button
-          className='btn del-btn'
-          onClick={() => dispatch(deleteTodo(id))}
-        >
-          <i className='ri-delete-bin-line'></i>
-          Delete
-        </button>
-      </li>
-      <li>
-        <button
-          className='btn del-btn'
-          onClick={() => dispatch(switchStatus(id))}
-        >
-          <i className='ri-delete-bin-line'></i>
-          Mark as Done
-        </button>
-      </li>
-    </SettingsList>
-  );
-};
 
 export default SettingsMenu;

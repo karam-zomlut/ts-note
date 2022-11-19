@@ -31,8 +31,13 @@ textarea {
 }
 i {
   pointer-events: none;
+  line-height: 1;
 }
 
 body {
   background-color: #88abff;
+}
+
+.modal-title{
+  font-weight: bold;
 }

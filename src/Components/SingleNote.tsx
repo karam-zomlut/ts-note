@@ -3,35 +3,48 @@ import { Grid } from '@mui/material';
 import SettingsMenu from './SettingsMenu';
 import styled from '@emotion/styled';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { convertToDate } from '../Utils';
+import { motion } from 'framer-motion';
 
 type IProps = {
   todo: {
     id: number;
     title: string;
     status: boolean;
+    description: string;
   };
 };
 
-const SingleNote = ({ todo: { id, title, status } }: IProps) => {
+const child = {
+  hidden: { x: 80, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+  },
+};
+
+const SingleNote = ({ todo: { id, title, status, description } }: IProps) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={2}>
-      <NoteContainer>
-        <div className='details'>
-          <h2 className='title'>{title}</h2>
-          <p className='description'>{title + title}</p>
-        </div>
-        <div className='bottom-content'>
-          <span className='date'>{id}</span>
-          <div className='actions'>
-            <button className='btn more'>
-              <i>
-                <MoreHorizIcon className='icon' />
-              </i>
-            </button>
-            <SettingsMenu id={id} />
+      <motion.div variants={child} initial='hidden' animate='visible'>
+        <NoteContainer className={status === true ? 'done' : ''}>
+          <div className='details'>
+            <h2 className='title'>{title}</h2>
+            <p className='description'>{description}</p>
           </div>
-        </div>
-      </NoteContainer>
+          <div className='bottom-content'>
+            <span className='date'>{convertToDate(id)}</span>
+            <div className='actions'>
+              <button className='btn more'>
+                <i>
+                  <MoreHorizIcon className='icon' />
+                </i>
+              </button>
+              <SettingsMenu id={id} />
+            </div>
+          </div>
+        </NoteContainer>
+      </motion.div>
     </Grid>
   );
 };
@@ -40,10 +53,18 @@ const NoteContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 230px;
+  height: 250px;
   background-color: #fff;
   border-radius: 0.4rem;
   padding: 1rem 1.2rem 1.2rem;
+
+  &.done {
+    opacity: 0.5;
+
+    .details {
+      text-decoration: line-through;
+    }
+  }
 
   .details {
     max-height: 165px;
