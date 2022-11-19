@@ -52,7 +52,7 @@ const MyForm = ({ handleCloseModal }: FormProps) => {
           variant='standard'
           style={{ marginBottom: '1rem' }}
           {...register('title')}
-          error={errors.title?.message !== ''}
+          error={!!errors.title?.message}
           helperText={errors.title?.message}
         />
         <TextField

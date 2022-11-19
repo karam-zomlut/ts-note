@@ -6,6 +6,7 @@ import { RootState } from '../app/store';
 import { ITodo, ITodoList } from '../Interfaces';
 import AddBox from './AddBox';
 import SingleNote from './SingleNote';
+import { AnimatePresence } from 'framer-motion';
 
 const Container: FC = () => {
   const todoList: ITodoList = useAppSelector(
@@ -22,10 +23,12 @@ const Container: FC = () => {
         <Grid item xs={12} sm={6} md={4} lg={2}>
           <AddBox />
         </Grid>
-        {todoList &&
-          todoList?.map((todo: ITodo) => (
-            <SingleNote todo={todo} key={todo?.id} />
-          ))}
+        <AnimatePresence>
+          {todoList &&
+            todoList?.map((todo: ITodo) => (
+              <SingleNote todo={todo} key={todo?.id} />
+            ))}
+        </AnimatePresence>
       </Grid>
     </ContainerDiv>
   );

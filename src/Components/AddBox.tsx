@@ -3,6 +3,28 @@ import styled from '@emotion/styled';
 import AddIcon from '@mui/icons-material/Add';
 import { useAppDispatch } from '../app/hooks';
 import { openModal } from '../Slices';
+import { motion } from 'framer-motion';
+
+const parent = {
+  hidden: { opacity: 1, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 1,
+      delayChildren: 0.5,
+    },
+  },
+};
+
+const child = {
+  hidden: { y: 40, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 const AddBox = () => {
   const dispatch = useAppDispatch();
@@ -10,14 +32,33 @@ const AddBox = () => {
     dispatch(openModal({ title: 'Add a new note' }));
   };
   return (
-    <MyBox onClick={handleOpenModal}>
-      <div className='icon'>
-        <i>
-          <AddIcon />
-        </i>
-      </div>
-      <h2 className='box-title'>Add New Note</h2>
-    </MyBox>
+    <motion.div
+      onClick={handleOpenModal}
+      variants={parent}
+      initial='hidden'
+      animate='visible'
+    >
+      <MyBox>
+        <motion.div
+          className='icon'
+          variants={child}
+          initial='hidden'
+          animate='visible'
+        >
+          <i>
+            <AddIcon />
+          </i>
+        </motion.div>
+        <motion.h2
+          variants={child}
+          initial='hidden'
+          animate='visible'
+          className='box-title'
+        >
+          Add New Note
+        </motion.h2>
+      </MyBox>
+    </motion.div>
   );
 };
 

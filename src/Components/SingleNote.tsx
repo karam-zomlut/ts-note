@@ -4,6 +4,7 @@ import SettingsMenu from './SettingsMenu';
 import styled from '@emotion/styled';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { convertToDate } from '../Utils';
+import { motion } from 'framer-motion';
 
 type IProps = {
   todo: {
@@ -14,26 +15,36 @@ type IProps = {
   };
 };
 
+const child = {
+  hidden: { x: 80, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+  },
+};
+
 const SingleNote = ({ todo: { id, title, status, description } }: IProps) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={2}>
-      <NoteContainer className={status === true ? 'done' : ''}>
-        <div className='details'>
-          <h2 className='title'>{title}</h2>
-          <p className='description'>{description}</p>
-        </div>
-        <div className='bottom-content'>
-          <span className='date'>{convertToDate(id)}</span>
-          <div className='actions'>
-            <button className='btn more'>
-              <i>
-                <MoreHorizIcon className='icon' />
-              </i>
-            </button>
-            <SettingsMenu id={id} />
+      <motion.div variants={child} initial='hidden' animate='visible'>
+        <NoteContainer className={status === true ? 'done' : ''}>
+          <div className='details'>
+            <h2 className='title'>{title}</h2>
+            <p className='description'>{description}</p>
           </div>
-        </div>
-      </NoteContainer>
+          <div className='bottom-content'>
+            <span className='date'>{convertToDate(id)}</span>
+            <div className='actions'>
+              <button className='btn more'>
+                <i>
+                  <MoreHorizIcon className='icon' />
+                </i>
+              </button>
+              <SettingsMenu id={id} />
+            </div>
+          </div>
+        </NoteContainer>
+      </motion.div>
     </Grid>
   );
 };
